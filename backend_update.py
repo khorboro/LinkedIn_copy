@@ -17,12 +17,9 @@ DB = []
 
 @app.post("/users")
 async def register_user(username: User):
-    """Register a new user if it doesn't exist yet.
-
-    TODO: Add check for duplicate usernames.
-    """
+    """Register a new user if it doesn't exist yet."""
     if username in DB:
-        return {"message": "User is already exist"}
+        raise HTTPException(409, f"User with username '{username}' is already exists.")
 
     DB.append(username)
     return {"message": "User registered successfully"}
