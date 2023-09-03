@@ -52,8 +52,7 @@ async def change_age(username: str, new_age: int):
 async def delete_user(username):
     """Delete existing user."""
     found_user = find_user_by_username(username, DB)
-    user = next((user for user in DB if user.username == username), None)
-    if user is not None:
+    if found_user is not None:
         DB.remove(user)
         return {"message": f"User '{username}' deleted successfully"}
     else:    
