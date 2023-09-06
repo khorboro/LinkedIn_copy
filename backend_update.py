@@ -41,7 +41,7 @@ async def change_age(username: str, new_age: int):
     found_user = find_user_by_username(username, DB) 
 
     if found_user is not None: 
-        user.age = new_age
+        found_user.age = new_age
         return {"message": f"Age for user '{username}' updated successfully"}
     else:
         raise HTTPException(404, f"User with username '{username}' does not exist.") 
